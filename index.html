@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+  <html lang="zh">
+    <head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>净值周报合集</title>
+        <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #f5f5f5;
+      }
+      
+      .container {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* Tab 样式 */
+        .tabs {
+          display: flex;
+          background: #fff;
+            border-bottom: 1px solid #ddd;
+          padding: 0 20px;
+          flex-wrap: wrap;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+      
+      .tab {
+        padding: 15px 25px;
+        cursor: pointer;
+        border: none;
+        background: none;
+        font-size: 15px;
+        color: #666;
+          border-bottom: 3px solid transparent;
+        transition: all 0.3s;
+      }
+      
+      .tab:hover {
+        color: #333;
+          background: #f9f9f9;
+      }
+      
+      .tab.active {
+        color: #2563eb;
+          border-bottom-color: #2563eb;
+          font-weight: 600;
+      }
+      
+      /* iframe 容器 */
+        .content {
+          flex: 1;
+          padding: 20px;
+        }
+      
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #fff;
+          border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+      </style>
+        </head>
+        <body>
+        <div class="container">
+        <div class="tabs">
+        <!-- 在这里添加你的标签页，data-src 指向对应的 HTML 文件 -->
+        <button class="tab active" data-src="cta_quantitative.html">量化CTA</button>
+        <button class="tab" data-src="cta_discretionary.html">主观CTA</button>
+        <button class="tab" data-src="cta_option.html">期权</button>
+        <button class="tab" data-src="cta_arbitrage.html">期货套利</button>
+        
+        <button class="tab" data-src="index_enhanced_500.html">500指增</button>
+        
+        <button class="tab" data-src="index_enhanced_1000.html">1000指增</button>
+        
+        <button class="tab" data-src="index_enhanced_300.html">300指增</button>
+        
+        <button class="tab" data-src="index_enhanced_2000.html">2000指增</button>
+        
+        <button class="tab" data-src="quantitative_stock.html">量化选股</button>
+        
+        <button class="tab" data-src="market_neutral.html">市场中性</button>
+        </div>
+        <div class="content">
+        <iframe id="contentFrame" src="cta_quantitative.html"></iframe>
+        </div>
+        </div>
+        
+        <script>
+        const tabs = document.querySelectorAll('.tab');
+      const iframe = document.getElementById('contentFrame');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // 移除所有 active 状态
+          tabs.forEach(t => t.classList.remove('active'));
+          // 添加当前 active 状态
+          tab.classList.add('active');
+          // 切换 iframe 内容
+          iframe.src = tab.dataset.src;
+        });
+      });
+      </script>
+        </body>
+        </html>
